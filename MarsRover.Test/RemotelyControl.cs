@@ -4,7 +4,7 @@ namespace MarsRover.Test;
 
 public class RemotelyControl
 {
-    private readonly Position _initialPosition;
+    private Position _initialPosition;
 
     public RemotelyControl(Position position)
     {
@@ -18,13 +18,18 @@ public class RemotelyControl
 
     public Position Move(string[] givenCommand)
     {
-        if (givenCommand[0] == "F")
+        var position = _initialPosition;
+        foreach (var command in givenCommand)
         {
-            return new Position(1,0);
-        }
-        if (givenCommand[0] == "B")
-        {
-            return new Position(1,2);
+            if (command == "F")
+            {
+                _initialPosition = new Position(_initialPosition.X, _initialPosition.Y - 1);
+            }
+
+            if (command == "B")
+            {
+                _initialPosition = new Position(_initialPosition.X, _initialPosition.Y + 1);
+            }
         }
 
         return _initialPosition;
