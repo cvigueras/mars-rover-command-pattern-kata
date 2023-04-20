@@ -6,4 +6,9 @@ public class RemotelyControl
     {
         return "1,1";
     }
+
+    public static string Move(string s)
+    {
+        throw new NotImplementedException();
+    }
 }

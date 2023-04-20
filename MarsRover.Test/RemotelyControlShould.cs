@@ -16,5 +16,13 @@ namespace MarsRover.Test
             
             result.Should().Be("1,1");
         }
+
+        [Test]
+        public void MoveRoverForwardWhenStayInInitialPosition()
+        {
+            var result = RemotelyControl.Move("F");
+
+            result.Should().Be("1,0");
+        }
     }
 }
