@@ -16,17 +16,17 @@ public class RemotelyControl
         return _initialPosition;
     }
 
-    public string Move(string command)
+    public Position Move(string[] givenCommand)
     {
-        if (command == "F")
+        if (givenCommand[0] == "F")
         {
-            return "1,0";
+            return new Position(1,0);
         }
-        if (command == "B")
+        if (givenCommand[0] == "B")
         {
-            return "1,2";
+            return new Position(1,2);
         }
 
-        return string.Empty;
+        return _initialPosition;
     }
 }
