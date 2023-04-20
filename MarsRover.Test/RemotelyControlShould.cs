@@ -6,10 +6,11 @@ namespace MarsRover.Test
     public class RemotelyControlShould
     {
         private RemotelyControl _remotelyControl;
+
         [SetUp]
         public void Setup()
         {
-            _remotelyControl = new RemotelyControl(new Position(1,1));
+            _remotelyControl = new RemotelyControl();
         }
 
         [Test]
