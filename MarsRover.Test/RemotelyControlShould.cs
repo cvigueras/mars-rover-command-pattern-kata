@@ -1,4 +1,5 @@
 using FluentAssertions;
+using MarsRover.App;
 
 namespace MarsRover.Test
 {
@@ -22,7 +23,7 @@ namespace MarsRover.Test
         [Test]
         public void MoveOneStepRoverForwardWhenStayInInitialPosition()
         {
-            string[] givenCommand = { "F" };
+            Command[] givenCommand = { Command.F };
             var result = _remotelyControl.Move(givenCommand);
 
             result.Should().BeEquivalentTo(new Position(1,0));
@@ -31,7 +32,7 @@ namespace MarsRover.Test
         [Test]
         public void MoveOneStepRoverBackwardWhenStayInInitialPosition()
         {
-            string[] givenCommand = { "B" };
+            Command[] givenCommand = { Command.B };
             var result = _remotelyControl.Move(givenCommand);
 
             result.Should().BeEquivalentTo(new Position(1,2));
@@ -40,7 +41,7 @@ namespace MarsRover.Test
         [Test]
         public void MoveTwoStepsRoverBackwardWhenStayInInitialPosition()
         {
-            string[] givenCommand = { "B" , "B" };
+            Command[] givenCommand = { Command.B , Command.B };
             var result = _remotelyControl.Move(givenCommand);
 
             result.Should().BeEquivalentTo(new Position(1, 3));
