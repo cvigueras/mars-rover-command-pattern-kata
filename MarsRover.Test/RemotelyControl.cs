@@ -7,9 +7,9 @@ public class RemotelyControl
         return "1,1";
     }
 
-    public static string Move(string s)
+    public static string Move(string command)
     {
-        if (s == "F")
+        if (command == "F")
         {
             return "1,0";
         }
