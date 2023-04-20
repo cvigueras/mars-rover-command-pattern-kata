@@ -13,6 +13,10 @@ public class RemotelyControl
         {
             return "1,0";
         }
+        if (command == "B")
+        {
+            return "1,2";
+        }
 
         return string.Empty;
     }
