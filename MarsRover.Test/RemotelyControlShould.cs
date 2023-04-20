@@ -17,12 +17,4 @@ namespace MarsRover.Test
             result.Should().Be("1,1");
         }
     }
-
-    public class RemotelyControl
-    {
-        public static object GetInitialPosition()
-        {
-            return "1,1";
-        }
-    }
 }
