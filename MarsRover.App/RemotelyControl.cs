@@ -18,15 +18,12 @@ public class RemotelyControl
     {
         foreach (var command in givenCommand)
         {
-            if (command == Command.F)
+            _initialPosition = command switch
             {
-                _initialPosition = new Position(_initialPosition.X, _initialPosition.Y - 1);
-            }
-
-            if (command == Command.B)
-            {
-                _initialPosition = new Position(_initialPosition.X, _initialPosition.Y + 1);
-            }
+                Command.F => new Position(_initialPosition.X, _initialPosition.Y - 1),
+                Command.B => new Position(_initialPosition.X, _initialPosition.Y + 1),
+                _ => _initialPosition
+            };
         }
 
         return _initialPosition;
