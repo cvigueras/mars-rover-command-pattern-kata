@@ -22,7 +22,7 @@ namespace MarsRover.Test
     {
         public static object GetInitialPosition()
         {
-            throw new NotImplementedException();
+            return "1,1";
         }
     }
 }
