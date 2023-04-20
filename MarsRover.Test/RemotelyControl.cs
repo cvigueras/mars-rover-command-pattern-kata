@@ -9,6 +9,11 @@ public class RemotelyControl
 
     public static string Move(string s)
     {
-        throw new NotImplementedException();
+        if (s == "F")
+        {
+            return "1,0";
+        }
+
+        return string.Empty;
     }
 }
