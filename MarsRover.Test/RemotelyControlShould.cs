@@ -18,11 +18,19 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void MoveRoverForwardWhenStayInInitialPosition()
+        public void MoveOneStepRoverForwardWhenStayInInitialPosition()
         {
             var result = RemotelyControl.Move("F");
 
             result.Should().Be("1,0");
+        }
+
+        [Test]
+        public void MoveOneStepRoverBackwardWhenStayInInitialPosition()
+        {
+            var result = RemotelyControl.Move("B");
+
+            result.Should().Be("1,2");
         }
     }
 }
