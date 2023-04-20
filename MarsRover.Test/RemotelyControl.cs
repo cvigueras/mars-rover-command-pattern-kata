@@ -1,13 +1,22 @@
+using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions;
+
 namespace MarsRover.Test;
 
 public class RemotelyControl
 {
-    public static string GetInitialPosition()
+    private readonly Position _initialPosition;
+
+    public RemotelyControl(Position position)
     {
-        return "1,1";
+        _initialPosition = new Position(1, 1);
     }
 
-    public static string Move(string command)
+    public Position GetInitialPosition()
+    {
+        return _initialPosition;
+    }
+
+    public string Move(string command)
     {
         if (command == "F")
         {
