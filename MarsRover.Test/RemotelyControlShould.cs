@@ -36,5 +36,14 @@ namespace MarsRover.Test
 
             result.Should().BeEquivalentTo(new Position(1,2));
         }
+
+        [Test]
+        public void MoveTwoStepsRoverBackwardWhenStayInInitialPosition()
+        {
+            string[] givenCommand = { "B" , "B" };
+            var result = _remotelyControl.Move(givenCommand);
+
+            result.Should().BeEquivalentTo(new Position(1, 3));
+        }
     }
 }
