@@ -74,5 +74,15 @@ namespace MarsRover.Test
 
             result.Should().Be(Orientation.East);
         }
+
+        [Test]
+        public void RotateRightRoverWhenStayInCurrentOrientation()
+        {
+            Command[] firstCommand = { Command.R };
+            var result = _remotelyControl.Turn(firstCommand);
+            Command[] secondCommand = { Command.L };
+
+            result.Should().Be(Orientation.North);
+        }
     }
 }
