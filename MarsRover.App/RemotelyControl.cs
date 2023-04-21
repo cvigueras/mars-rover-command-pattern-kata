@@ -20,26 +20,24 @@ public class RemotelyControl
     {
         foreach (var command in givenCommand)
         {
-            _currentPosition = command switch
-            {
-                Command.F => new Position(_currentPosition.X, _currentPosition.Y - 1),
-                Command.B => new Position(_currentPosition.X, _currentPosition.Y + 1),
-                _ => _currentPosition
-            };
+            if (command == Command.F)
+                _currentPosition = new Position(_currentPosition.X, _currentPosition.Y - 1);
+            if (command == Command.B)
+                _currentPosition = new Position(_currentPosition.X, _currentPosition.Y + 1);
         }
-
         return _currentPosition;
     }
 
     public Orientation Turn(Command[] givenCommand)
     {
-        if (givenCommand[0] == Command.R)
+        switch (givenCommand[0])
         {
-            _orientation += 1;
-        }
-        if (givenCommand[0] == Command.L)
-        {
-            _orientation -= 1;
+            case Command.R:
+                _orientation += 1;
+                break;
+            default:
+                _orientation -= 1;
+                break;
         }
         if (_orientation > Orientation.West)
         {
