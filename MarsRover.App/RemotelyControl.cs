@@ -31,9 +31,9 @@ public class RemotelyControl
         return _initialPosition;
     }
 
-    public static object Rotate(string s)
+    public string Turn(Command[] givenCommand)
     {
-        if (s == "L")
+        if (givenCommand[0] == Command.L)
         {
             return "West";
         }

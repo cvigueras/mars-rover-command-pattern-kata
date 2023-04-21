@@ -51,7 +51,8 @@ namespace MarsRover.Test
         [Test]
         public void RotateLeftRoverWhenStayInInitialOrientation()
         {
-            var result = RemotelyControl.Rotate("L");
+            Command[] givenCommand = { Command.L };
+            var result = _remotelyControl.Turn(givenCommand);
 
             result.Should().Be("West");
         }
@@ -59,7 +60,8 @@ namespace MarsRover.Test
         [Test]
         public void RotateRightRoverWhenStayInInitialOrientation()
         {
-            var result = RemotelyControl.Rotate("R");
+            Command[] givenCommand = { Command.R };
+            var result = _remotelyControl.Turn(givenCommand);
 
             result.Should().Be("East");
         }
