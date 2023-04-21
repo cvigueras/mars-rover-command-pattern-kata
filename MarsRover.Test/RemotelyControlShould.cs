@@ -63,7 +63,7 @@ namespace MarsRover.Test
             Command[] givenCommand = { Command.L };
             var result = _remotelyControl.Turn(givenCommand);
 
-            result.Should().Be("West");
+            result.Should().Be(Orientation.West);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace MarsRover.Test
             Command[] givenCommand = { Command.R };
             var result = _remotelyControl.Turn(givenCommand);
 
-            result.Should().Be("East");
+            result.Should().Be(Orientation.East);
         }
     }
 }

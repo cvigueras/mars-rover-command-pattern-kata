@@ -3,12 +3,12 @@ namespace MarsRover.App;
 public class RemotelyControl
 {
     private Position _currentPosition;
-    private static string _orientation;
+    private Orientation _orientation;
 
     public RemotelyControl()
     {
         _currentPosition = new Position(1, 1);
-        _orientation = "N";
+        _orientation = Orientation.North;
     }
 
     public Position GetInitialPosition()
@@ -31,12 +31,12 @@ public class RemotelyControl
         return _currentPosition;
     }
 
-    public string Turn(Command[] givenCommand)
+    public Orientation Turn(Command[] givenCommand)
     {
         if (givenCommand[0] == Command.L)
         {
-            return "West";
+            return Orientation.West;
         }
-        return "East";
+        return Orientation.East;
     }
 }
