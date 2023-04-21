@@ -2,33 +2,33 @@ namespace MarsRover.App;
 
 public class RemotelyControl
 {
-    private Position _initialPosition;
+    private Position _currentPosition;
     private static string _orientation;
 
     public RemotelyControl()
     {
-        _initialPosition = new Position(1, 1);
+        _currentPosition = new Position(1, 1);
         _orientation = "N";
     }
 
     public Position GetInitialPosition()
     {
-        return _initialPosition;
+        return _currentPosition;
     }
 
     public Position Move(Command[] givenCommand)
     {
         foreach (var command in givenCommand)
         {
-            _initialPosition = command switch
+            _currentPosition = command switch
             {
-                Command.F => new Position(_initialPosition.X, _initialPosition.Y - 1),
-                Command.B => new Position(_initialPosition.X, _initialPosition.Y + 1),
-                _ => _initialPosition
+                Command.F => new Position(_currentPosition.X, _currentPosition.Y - 1),
+                Command.B => new Position(_currentPosition.X, _currentPosition.Y + 1),
+                _ => _currentPosition
             };
         }
 
-        return _initialPosition;
+        return _currentPosition;
     }
 
     public string Turn(Command[] givenCommand)
