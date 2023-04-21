@@ -3,10 +3,12 @@ namespace MarsRover.App;
 public class RemotelyControl
 {
     private Position _initialPosition;
+    private static string _orientation;
 
     public RemotelyControl()
     {
         _initialPosition = new Position(1, 1);
+        _orientation = "N";
     }
 
     public Position GetInitialPosition()
@@ -31,6 +33,6 @@ public class RemotelyControl
 
     public static object Rotate(string s)
     {
-        throw new NotImplementedException();
+        return "West";
     }
 }
