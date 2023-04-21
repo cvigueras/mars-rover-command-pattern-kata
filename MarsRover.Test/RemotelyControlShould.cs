@@ -10,13 +10,13 @@ namespace MarsRover.Test
         [SetUp]
         public void Setup()
         {
-            _remotelyControl = new RemotelyControl();
+            _remotelyControl = new RemotelyControl(Orientation.North, new Position(1,1));
         }
 
         [Test]
         public void PlaceRoverInInitialPosition()
         {
-            var result = _remotelyControl.GetInitialPosition();
+            var result = _remotelyControl.Position;
             
             result.Should().BeEquivalentTo(new Position(1,1));
         }
@@ -90,7 +90,6 @@ namespace MarsRover.Test
         [Test]
         public void RotateLeftRoverWhenStayInNorth()
         {
-            _remotelyControl._orientation = Orientation.North;
             Command[] secondCommand = { Command.L };
 
             var result = _remotelyControl.Turn(secondCommand);
@@ -101,7 +100,7 @@ namespace MarsRover.Test
         [Test]
         public void RotateRightRoverWhenStayInWest()
         {
-            _remotelyControl._orientation = Orientation.West;
+            _remotelyControl = new RemotelyControl(Orientation.West, new Position(1, 1));
             Command[] secondCommand = { Command.R };
 
             var result = _remotelyControl.Turn(secondCommand);
@@ -112,7 +111,7 @@ namespace MarsRover.Test
         [Test]
         public void RotateLeftRoverWhenStayInSouth()
         {
-            _remotelyControl._orientation = Orientation.South;
+            _remotelyControl = new RemotelyControl(Orientation.South, new Position(1, 1));
             Command[] secondCommand = { Command.L };
 
             var result = _remotelyControl.Turn(secondCommand);

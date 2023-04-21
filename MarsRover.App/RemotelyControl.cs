@@ -2,18 +2,13 @@ namespace MarsRover.App;
 
 public class RemotelyControl
 {
-    private Position _currentPosition;
-    public Orientation _orientation;
+    private Orientation _orientation;
+    public Position Position;
 
-    public RemotelyControl()
+    public RemotelyControl(Orientation orientation, Position position)
     {
-        _currentPosition = new Position(1, 1);
-        _orientation = Orientation.North;
-    }
-
-    public Position GetInitialPosition()
-    {
-        return _currentPosition;
+        Position = position;
+        _orientation = orientation;
     }
 
     public Position Move(Command[] givenCommand)
@@ -21,11 +16,11 @@ public class RemotelyControl
         foreach (var command in givenCommand)
         {
             if (command == Command.F)
-                _currentPosition = new Position(_currentPosition.X, _currentPosition.Y - 1);
+                Position = new Position(Position.X, Position.Y - 1);
             if (command == Command.B)
-                _currentPosition = new Position(_currentPosition.X, _currentPosition.Y + 1);
+                Position = new Position(Position.X, Position.Y + 1);
         }
-        return _currentPosition;
+        return Position;
     }
 
     public Orientation Turn(Command[] givenCommand)
