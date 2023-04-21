@@ -5,18 +5,18 @@ namespace MarsRover.Test
 {
     public class RemotelyControlShould
     {
-        private RemotelyControl _remotelyControl;
+        private RemoteInvoker _remoteInvoker;
 
         [SetUp]
         public void Setup()
         {
-            _remotelyControl = new RemotelyControl(Orientation.North, new Position(1,1));
+            _remoteInvoker = new RemoteInvoker(Orientation.North, new Position(1,1));
         }
 
         [Test]
         public void PlaceRoverInInitialPosition()
         {
-            var result = _remotelyControl.Position;
+            var result = _remoteInvoker.RemoteReceiver.Position;
             
             result.Should().BeEquivalentTo(new Position(1,1));
         }
@@ -25,7 +25,7 @@ namespace MarsRover.Test
         public void MoveOneStepRoverForwardWhenStayInInitialPosition()
         {
             Command[] givenCommand = { Command.F };
-            var result = _remotelyControl.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Move(givenCommand);
 
             result.Should().BeEquivalentTo(new Position(1,0));
         }
@@ -34,7 +34,7 @@ namespace MarsRover.Test
         public void MoveOneStepRoverBackwardWhenStayInInitialPosition()
         {
             Command[] givenCommand = { Command.B };
-            var result = _remotelyControl.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Move(givenCommand);
 
             result.Should().BeEquivalentTo(new Position(1,2));
         }
@@ -43,7 +43,7 @@ namespace MarsRover.Test
         public void MoveTwoStepsRoverBackwardWhenStayInInitialPosition()
         {
             Command[] givenCommand = { Command.B , Command.B };
-            var result = _remotelyControl.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Move(givenCommand);
 
             result.Should().BeEquivalentTo(new Position(1, 3));
         }
@@ -52,7 +52,7 @@ namespace MarsRover.Test
         public void MoveThreeStepsRoverBackwardWhenStayInInitialPosition()
         {
             Command[] givenCommand = { Command.B , Command.B, Command.B };
-            var result = _remotelyControl.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Move(givenCommand);
 
             result.Should().BeEquivalentTo(new Position(1, 4));
         }
@@ -60,8 +60,9 @@ namespace MarsRover.Test
         [Test]
         public void RotateLeftRoverWhenStayInInitialOrientation()
         {
-            Command[] givenCommand = { Command.L };
-            var result = _remotelyControl.Turn(givenCommand);
+            _remoteInvoker.Execute(Command.L);
+
+            var result = _remoteInvoker.RemoteReceiver.Orientation;
 
             result.Should().Be(Orientation.West);
         }
@@ -69,20 +70,21 @@ namespace MarsRover.Test
         [Test]
         public void RotateRightRoverWhenStayInInitialOrientation()
         {
-            Command[] givenCommand = { Command.R };
-            var result = _remotelyControl.Turn(givenCommand);
+            _remoteInvoker.Execute(Command.R);
+
+            var result = _remoteInvoker.RemoteReceiver.Orientation;
 
             result.Should().Be(Orientation.East);
         }
 
         [Test]
-        public void RotateRightRoverWhenStayInCurrentOrientation()
+        public void RotateLeftRoverWhenStayInCurrentOrientation()
         {
-            Command[] firstCommand = { Command.R };
-            _remotelyControl.Turn(firstCommand);
-            Command[] secondCommand = { Command.L };
+            _remoteInvoker.Execute(Command.R);
 
-            var result = _remotelyControl.Turn(secondCommand);
+            _remoteInvoker.Execute(Command.L);
+
+            var result = _remoteInvoker.RemoteReceiver.Orientation;
 
             result.Should().Be(Orientation.North);
         }
@@ -90,9 +92,9 @@ namespace MarsRover.Test
         [Test]
         public void RotateLeftRoverWhenStayInNorth()
         {
-            Command[] secondCommand = { Command.L };
+            _remoteInvoker.Execute(Command.L);
 
-            var result = _remotelyControl.Turn(secondCommand);
+            var result = _remoteInvoker.RemoteReceiver.Orientation;
 
             result.Should().Be(Orientation.West);
         }
@@ -100,10 +102,11 @@ namespace MarsRover.Test
         [Test]
         public void RotateRightRoverWhenStayInWest()
         {
-            _remotelyControl = new RemotelyControl(Orientation.West, new Position(1, 1));
-            Command[] secondCommand = { Command.R };
+            _remoteInvoker = new RemoteInvoker(Orientation.West, new Position(1, 1));
 
-            var result = _remotelyControl.Turn(secondCommand);
+            _remoteInvoker.Execute(Command.R);
+
+            var result = _remoteInvoker.RemoteReceiver.Orientation;
 
             result.Should().Be(Orientation.North);
         }
@@ -111,10 +114,11 @@ namespace MarsRover.Test
         [Test]
         public void RotateLeftRoverWhenStayInSouth()
         {
-            _remotelyControl = new RemotelyControl(Orientation.South, new Position(1, 1));
-            Command[] secondCommand = { Command.L };
+            _remoteInvoker = new RemoteInvoker(Orientation.South, new Position(1, 1));
 
-            var result = _remotelyControl.Turn(secondCommand);
+            _remoteInvoker.Execute(Command.L);
+
+            var result = _remoteInvoker.RemoteReceiver.Orientation;
 
             result.Should().Be(Orientation.East);
         }
