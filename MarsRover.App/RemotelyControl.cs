@@ -28,4 +28,9 @@ public class RemotelyControl
 
         return _initialPosition;
     }
+
+    public static object Rotate(string s)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -47,5 +47,13 @@ namespace MarsRover.Test
 
             result.Should().BeEquivalentTo(new Position(1, 3));
         }
+
+        [Test]
+        public void RotateLeftRoverWhenStayInInitialOrientation()
+        {
+            var result = RemotelyControl.Rotate("L");
+
+            result.Should().Be("West");
+        }
     }
 }
