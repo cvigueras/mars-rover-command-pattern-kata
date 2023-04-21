@@ -49,6 +49,15 @@ namespace MarsRover.Test
         }
 
         [Test]
+        public void MoveThreeStepsRoverBackwardWhenStayInInitialPosition()
+        {
+            Command[] givenCommand = { Command.B , Command.B, Command.B };
+            var result = _remotelyControl.Move(givenCommand);
+
+            result.Should().BeEquivalentTo(new Position(1, 4));
+        }
+
+        [Test]
         public void RotateLeftRoverWhenStayInInitialOrientation()
         {
             Command[] givenCommand = { Command.L };
