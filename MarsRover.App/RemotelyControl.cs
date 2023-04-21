@@ -3,7 +3,7 @@ namespace MarsRover.App;
 public class RemotelyControl
 {
     private Position _currentPosition;
-    private Orientation _orientation;
+    public Orientation _orientation;
 
     public RemotelyControl()
     {
@@ -33,10 +33,22 @@ public class RemotelyControl
 
     public Orientation Turn(Command[] givenCommand)
     {
+        if (givenCommand[0] == Command.R)
+        {
+            _orientation += 1;
+        }
         if (givenCommand[0] == Command.L)
         {
-            return Orientation.West;
+            _orientation -= 1;
         }
-        return Orientation.East;
+        if (_orientation > Orientation.West)
+        {
+            _orientation = Orientation.North;
+        }
+        if (_orientation <= Orientation.None)
+        {
+            _orientation = Orientation.West;
+        }
+        return _orientation;
     }
 }
