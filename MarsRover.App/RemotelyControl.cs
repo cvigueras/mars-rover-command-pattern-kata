@@ -33,6 +33,10 @@ public class RemotelyControl
 
     public static object Rotate(string s)
     {
-        return "West";
+        if (s == "L")
+        {
+            return "West";
+        }
+        return "East";
     }
 }
