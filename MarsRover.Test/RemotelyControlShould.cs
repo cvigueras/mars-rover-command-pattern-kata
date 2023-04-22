@@ -152,7 +152,7 @@ namespace MarsRover.Test
 
             var result = _remoteReceiver.Move(givenCommand);
 
-            result.Should().BeEquivalentTo(new Position(1, 4));
+            result.Should().BeEquivalentTo(new Position(4, 1));
         }
     }
 }

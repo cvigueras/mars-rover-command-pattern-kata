@@ -22,16 +22,17 @@ public class RemoteReceiver
                 if (command == Command.B)
                     Position = new Position(Position.X, Position.Y + 1);
             }
-
             if (Orientation == Orientation.South)
             {
-                if (Orientation == Orientation.South)
-                {
-                    if (command == Command.F)
-                        Position = new Position(Position.X, Position.Y + 1);                    
-                    if (command == Command.B)
-                        Position = new Position(Position.X, Position.Y - 1);
-                }
+                if (command == Command.F)
+                    Position = new Position(Position.X, Position.Y + 1);
+                if (command == Command.B)
+                    Position = new Position(Position.X, Position.Y - 1);
+            }
+            if (Orientation == Orientation.East)
+            {
+                if (command == Command.F)
+                    Position = new Position(Position.X + 1, Position.Y);
             }
         }
         return Position;
