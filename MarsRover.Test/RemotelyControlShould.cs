@@ -121,5 +121,16 @@ namespace MarsRover.Test
 
             result.Should().Be(Orientation.East);
         }
+
+        [Test]
+        public void MoveTwoStepsRoverForwardWhenStayInSouthAndInitialPosition()
+        {
+            _remoteInvoker.RemoteReceiver.Orientation = Orientation.South;
+            Command[] givenCommand = { Command.F, Command.F };
+
+            var result = _remoteReceiver.Move(givenCommand);
+
+            result.Should().BeEquivalentTo(new Position(1, 3));
+        }
     }
 }
