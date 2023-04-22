@@ -15,7 +15,7 @@ public class RemoteReceiver
     {
         foreach (var command in givenCommand)
         {
-            if (Orientation ==Orientation.North)
+            if (Orientation == Orientation.North)
             {
                 if (command == Command.F)
                     Position = new Position(Position.X, Position.Y - 1);
