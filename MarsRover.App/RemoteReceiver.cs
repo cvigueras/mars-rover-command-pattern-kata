@@ -42,23 +42,15 @@ public class RemoteReceiver
         return Position;
     }
 
-    public Orientation TurnRight()
+    public void TurnRight()
     {
         Orientation += 1;
-        if (Orientation > Orientation.West)
-        {
-            Orientation = Orientation.North;
-        }
-        return Orientation;
+        Orientation = Orientation > Orientation.West ? Orientation.North : Orientation;
     }
 
-    public Orientation TurnLeft()
+    public void TurnLeft()
     {
         Orientation -= 1;
-        if (Orientation <= Orientation.None)
-        {
-            Orientation = Orientation.West;
-        }
-        return Orientation;
+        Orientation = Orientation <= Orientation.None ? Orientation.West : Orientation;
     }
 }

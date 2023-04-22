@@ -17,13 +17,14 @@
 
         public void Execute(Command command)
         {
-            if (command == Command.R)
+            switch (command)
             {
-                _turnRight.Execute();
-            }
-            if (command == Command.L)
-            {
-                _turnLeft.Execute();
+                case Command.R:
+                    _turnRight.Execute();
+                    break;
+                case Command.L:
+                    _turnLeft.Execute();
+                    break;
             }
         }
     }
