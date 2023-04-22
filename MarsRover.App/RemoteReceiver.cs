@@ -33,6 +33,8 @@ public class RemoteReceiver
             {
                 if (command == Command.F)
                     Position = new Position(Position.X + 1, Position.Y);
+                if (command == Command.B)
+                    Position = new Position(Position.X - 1, Position.Y);
             }
         }
         return Position;
