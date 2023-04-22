@@ -36,6 +36,11 @@ public class RemoteReceiver
                 if (command == Command.B)
                     Position = new Position(Position.X - 1, Position.Y);
             }
+            if (Orientation == Orientation.West)
+            {
+                if (command == Command.F)
+                    Position = new Position(Position.X - 1, Position.Y);
+            }
         }
         return Position;
     }
