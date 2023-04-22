@@ -181,7 +181,7 @@ namespace MarsRover.Test
         public void MoveFourStepsRoverBackwardWhenLookToWestAndInitialPosition()
         {
             _remoteReceiver.Orientation = Orientation.West;
-            Command[] givenCommand = { Command.F, Command.F, Command.F, Command.F, };
+            Command[] givenCommand = { Command.B, Command.B, Command.B, Command.B, };
 
             var result = _remoteReceiver.Move(givenCommand);
 
