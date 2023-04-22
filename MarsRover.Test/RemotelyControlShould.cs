@@ -60,7 +60,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void RotateLeftRoverWhenStayInInitialOrientation()
+        public void RotateLeftRoverWhenLookToInitialOrientation()
         {
             _remoteInvoker.Execute(Command.L);
 
@@ -70,7 +70,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void RotateRightRoverWhenStayInInitialOrientation()
+        public void RotateRightRoverWhenLookToInitialOrientation()
         {
             _remoteInvoker.Execute(Command.R);
 
@@ -80,7 +80,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void RotateLeftRoverWhenStayInCurrentOrientation()
+        public void RotateLeftRoverWhenLookToCurrentOrientation()
         {
             _remoteInvoker.Execute(Command.R);
             _remoteInvoker.Execute(Command.L);
@@ -91,7 +91,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void RotateLeftRoverWhenStayInNorth()
+        public void RotateLeftRoverWhenLookToNorth()
         {
             _remoteInvoker.Execute(Command.L);
 
@@ -101,7 +101,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void RotateRightRoverWhenStayInWest()
+        public void RotateRightRoverWhenLookToWest()
         {
             _remoteInvoker = new RemoteInvoker(Orientation.West, new Position(1, 1));
             _remoteInvoker.Execute(Command.R);
@@ -112,7 +112,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void RotateLeftRoverWhenStayInSouth()
+        public void RotateLeftRoverWhenLookToSouth()
         {
             _remoteInvoker = new RemoteInvoker(Orientation.South, new Position(1, 1));
             _remoteInvoker.Execute(Command.L);
@@ -123,7 +123,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void MoveTwoStepsRoverForwardWhenStayInSouthAndInitialPosition()
+        public void MoveTwoStepsRoverForwardWhenLookToSouthAndInitialPosition()
         {
             _remoteReceiver.Orientation = Orientation.South;
             Command[] givenCommand = { Command.F, Command.F };
@@ -134,7 +134,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void MoveOneStepRoverBackwardWhenStayInSouthAndInitialPosition()
+        public void MoveOneStepRoverBackwardWhenLookToSouthAndInitialPosition()
         {
             _remoteReceiver.Orientation = Orientation.South;
             Command[] givenCommand = { Command.B };
