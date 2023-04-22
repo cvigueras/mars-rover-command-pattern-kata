@@ -13,37 +13,28 @@ public class RemoteReceiver
 
     public Position Move(Command[] givenCommand)
     {
-        foreach (var command in givenCommand)
+        var backWard = givenCommand.Where(b => b.Equals(Command.B)).ToList();
+        var forWard = givenCommand.Where(f => f.Equals(Command.F)).ToList();
+        switch (Orientation)
         {
-            if (Orientation == Orientation.North)
-            {
-                if (command == Command.F)
-                    Position = new Position(Position.X, Position.Y - 1);
-                if (command == Command.B)
-                    Position = new Position(Position.X, Position.Y + 1);
-            }
-            if (Orientation == Orientation.South)
-            {
-                if (command == Command.F)
-                    Position = new Position(Position.X, Position.Y + 1);
-                if (command == Command.B)
-                    Position = new Position(Position.X, Position.Y - 1);
-            }
-            if (Orientation == Orientation.East)
-            {
-                if (command == Command.F)
-                    Position = new Position(Position.X + 1, Position.Y);
-                if (command == Command.B)
-                    Position = new Position(Position.X - 1, Position.Y);
-            }
-            if (Orientation == Orientation.West)
-            {
-                if (command == Command.F)
-                    Position = new Position(Position.X - 1, Position.Y);                
-                if (command == Command.B)
-                    Position = new Position(Position.X + 1, Position.Y);
-            }
+            case Orientation.North:
+                Position.Y -= forWard.Count;
+                Position.Y += backWard.Count;
+                break;
+            case Orientation.South:
+                Position.Y += forWard.Count;
+                Position.Y -= backWard.Count;
+                break;
+            case Orientation.East:
+                Position.X += forWard.Count;
+                Position.X -= backWard.Count;
+                break;
+            case Orientation.West:
+                Position.X -= forWard.Count;
+                Position.X += backWard.Count;
+                break;
         }
+
         return Position;
     }
 
