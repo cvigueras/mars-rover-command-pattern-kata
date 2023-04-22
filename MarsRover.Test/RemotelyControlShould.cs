@@ -125,7 +125,7 @@ namespace MarsRover.Test
         [Test]
         public void MoveTwoStepsRoverForwardWhenStayInSouthAndInitialPosition()
         {
-            _remoteInvoker.RemoteReceiver.Orientation = Orientation.South;
+            _remoteReceiver.Orientation = Orientation.South;
             Command[] givenCommand = { Command.F, Command.F };
 
             var result = _remoteReceiver.Move(givenCommand);

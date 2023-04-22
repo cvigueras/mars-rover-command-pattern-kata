@@ -15,10 +15,22 @@ public class RemoteReceiver
     {
         foreach (var command in givenCommand)
         {
-            if (command == Command.F)
-                Position = new Position(Position.X, Position.Y - 1);
-            if (command == Command.B)
-                Position = new Position(Position.X, Position.Y + 1);
+            if (Orientation ==Orientation.North)
+            {
+                if (command == Command.F)
+                    Position = new Position(Position.X, Position.Y - 1);
+                if (command == Command.B)
+                    Position = new Position(Position.X, Position.Y + 1);
+            }
+
+            if (Orientation == Orientation.South)
+            {
+                if (Orientation == Orientation.South)
+                {
+                    if (command == Command.F)
+                        Position = new Position(Position.X, Position.Y + 1);
+                }
+            }
         }
         return Position;
     }
