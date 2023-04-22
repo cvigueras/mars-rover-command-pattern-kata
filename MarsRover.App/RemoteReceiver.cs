@@ -33,6 +33,10 @@ public class RemoteReceiver
                 Position.X -= forWard.Count;
                 Position.X += backWard.Count;
                 break;
+            case Orientation.None:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         return Position;
