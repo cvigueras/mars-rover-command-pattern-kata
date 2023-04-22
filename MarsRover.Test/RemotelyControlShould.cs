@@ -137,7 +137,7 @@ namespace MarsRover.Test
         public void MoveOneStepRoverBackwardWhenStayInSouthAndInitialPosition()
         {
             _remoteReceiver.Orientation = Orientation.South;
-            Command[] givenCommand = { Command.F, Command.F };
+            Command[] givenCommand = { Command.B };
 
             var result = _remoteReceiver.Move(givenCommand);
 
