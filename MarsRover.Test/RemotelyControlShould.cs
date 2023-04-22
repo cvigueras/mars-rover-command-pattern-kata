@@ -165,5 +165,16 @@ namespace MarsRover.Test
 
             result.Should().BeEquivalentTo(new Position(0, 1));
         }
+
+        [Test]
+        public void MoveOneStepRoverForwardWhenLookToWestAndInitialPosition()
+        {
+            _remoteReceiver.Orientation = Orientation.West;
+            Command[] givenCommand = { Command.F };
+
+            var result = _remoteReceiver.Move(givenCommand);
+
+            result.Should().BeEquivalentTo(new Position(0, 1));
+        }
     }
 }
