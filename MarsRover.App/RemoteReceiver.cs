@@ -4,11 +4,13 @@ public class RemoteReceiver
 {
     public Orientation Orientation;
     public Position Position;
+    public Planet Planet;
 
     public RemoteReceiver(Orientation orientation, Position position)
     {
         Position = position;
         Orientation = orientation;
+        Planet = new Planet();
     }
 
     public Position Move(Command[] givenCommand)
@@ -36,21 +38,24 @@ public class RemoteReceiver
             case Orientation.None:
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("Not valid argument");
         }
 
+        Planet.CheckPosition(Position);
         return Position;
     }
 
-    public void TurnRight()
+    public Orientation TurnRight()
     {
         Orientation += 1;
         Orientation = Orientation > Orientation.West ? Orientation.North : Orientation;
+        return Orientation;
     }
 
-    public void TurnLeft()
+    public Orientation TurnLeft()
     {
         Orientation -= 1;
         Orientation = Orientation <= Orientation.None ? Orientation.West : Orientation;
+        return Orientation;
     }
 }
