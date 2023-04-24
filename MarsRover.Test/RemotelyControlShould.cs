@@ -26,8 +26,9 @@ namespace MarsRover.Test
         [Test]
         public void MoveOneStepRoverForwardWhenStayInInitialPosition()
         {
-            Command[] givenCommand = { Command.F };
-            var result = _remoteReceiver.Move(givenCommand);
+            _remoteInvoker.Execute(Command.F);
+
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(1,0));
         }
@@ -125,10 +126,11 @@ namespace MarsRover.Test
         [Test]
         public void MoveTwoStepsRoverForwardWhenLookToSouthAndInitialPosition()
         {
-            _remoteReceiver.Orientation = Orientation.South;
-            Command[] givenCommand = { Command.F, Command.F };
+            _remoteInvoker.RemoteReceiver.Orientation = Orientation.South;
+            _remoteInvoker.Execute(Command.F);
+            _remoteInvoker.Execute(Command.F);
 
-            var result = _remoteReceiver.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(1, 3));
         }
@@ -147,10 +149,12 @@ namespace MarsRover.Test
         [Test]
         public void MoveThreeStepsRoverForwardWhenLookToEastAndInitialPosition()
         {
-            _remoteReceiver.Orientation = Orientation.East;
-            Command[] givenCommand = { Command.F, Command.F, Command.F };
+            _remoteInvoker.RemoteReceiver.Orientation = Orientation.East;
+            _remoteInvoker.Execute(Command.F);
+            _remoteInvoker.Execute(Command.F);
+            _remoteInvoker.Execute(Command.F);
 
-            var result = _remoteReceiver.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(4, 1));
         }
@@ -169,10 +173,10 @@ namespace MarsRover.Test
         [Test]
         public void MoveOneStepRoverForwardWhenLookToWestAndInitialPosition()
         {
-            _remoteReceiver.Orientation = Orientation.West;
-            Command[] givenCommand = { Command.F };
+            _remoteInvoker.RemoteReceiver.Orientation = Orientation.West;
+            _remoteInvoker.Execute(Command.F);
 
-            var result = _remoteReceiver.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(0, 1));
         }

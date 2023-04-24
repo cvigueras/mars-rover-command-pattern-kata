@@ -2,18 +2,19 @@
 {
     public class RemoteInvoker
     {
-        private readonly RemoteReceiver _remoteReceiver;
         private readonly TurnRight _turnRight;
         private readonly TurnLeft _turnLeft;
+        private readonly MoveForward _moveForward;
 
         public RemoteInvoker(Orientation orientation, Position position)
         {
-            _remoteReceiver = new RemoteReceiver(orientation, position);
+            RemoteReceiver = new RemoteReceiver(orientation, position);
             _turnRight = new TurnRight(this);
             _turnLeft = new TurnLeft(this);
+            _moveForward = new MoveForward(this);
         }
 
-        public RemoteReceiver RemoteReceiver => _remoteReceiver;
+        public RemoteReceiver RemoteReceiver { get; }
 
         public void Execute(Command command)
         {
@@ -24,6 +25,9 @@
                     break;
                 case Command.L:
                     _turnLeft.Execute();
+                    break;
+                case Command.F:
+                    _moveForward.Execute();
                     break;
             }
         }
