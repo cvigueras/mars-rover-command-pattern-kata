@@ -36,8 +36,9 @@ namespace MarsRover.Test
         [Test]
         public void MoveOneStepRoverBackwardWhenStayInInitialPosition()
         {
-            Command[] givenCommand = { Command.B };
-            var result = _remoteReceiver.Move(givenCommand);
+            _remoteInvoker.Execute(Command.B);
+
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(1,2));
         }
@@ -45,8 +46,10 @@ namespace MarsRover.Test
         [Test]
         public void MoveTwoStepsRoverBackwardWhenStayInInitialPosition()
         {
-            Command[] givenCommand = { Command.B , Command.B };
-            var result = _remoteReceiver.Move(givenCommand);
+            _remoteInvoker.Execute(Command.B);
+            _remoteInvoker.Execute(Command.B);
+
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(1, 3));
         }
@@ -54,8 +57,11 @@ namespace MarsRover.Test
         [Test]
         public void MoveThreeStepsRoverBackwardWhenStayInInitialPosition()
         {
-            Command[] givenCommand = { Command.B , Command.B, Command.B };
-            var result = _remoteReceiver.Move(givenCommand);
+            _remoteInvoker.Execute(Command.B);
+            _remoteInvoker.Execute(Command.B);
+            _remoteInvoker.Execute(Command.B);
+
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(1, 4));
         }
@@ -138,10 +144,10 @@ namespace MarsRover.Test
         [Test]
         public void MoveOneStepRoverBackwardWhenLookToSouthAndInitialPosition()
         {
-            _remoteReceiver.Orientation = Orientation.South;
-            Command[] givenCommand = { Command.B };
+            _remoteInvoker.RemoteReceiver.Orientation = Orientation.South;
+            _remoteInvoker.Execute(Command.B);
 
-            var result = _remoteReceiver.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(1, 0));
         }
@@ -162,10 +168,10 @@ namespace MarsRover.Test
         [Test]
         public void MoveOneStepRoverBackwardWhenLookToEastAndInitialPosition()
         {
-            _remoteReceiver.Orientation = Orientation.East;
-            Command[] givenCommand = { Command.B };
+            _remoteInvoker.RemoteReceiver.Orientation = Orientation.East;
+            _remoteInvoker.Execute(Command.B);
 
-            var result = _remoteReceiver.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(0, 1));
         }
@@ -184,10 +190,13 @@ namespace MarsRover.Test
         [Test]
         public void MoveFourStepsRoverBackwardWhenLookToWestAndInitialPosition()
         {
-            _remoteReceiver.Orientation = Orientation.West;
-            Command[] givenCommand = { Command.B, Command.B, Command.B, Command.B, };
+            _remoteInvoker.RemoteReceiver.Orientation = Orientation.West;
+            _remoteInvoker.Execute(Command.B);
+            _remoteInvoker.Execute(Command.B);
+            _remoteInvoker.Execute(Command.B);
+            _remoteInvoker.Execute(Command.B);
 
-            var result = _remoteReceiver.Move(givenCommand);
+            var result = _remoteInvoker.RemoteReceiver.Position;
 
             result.Should().BeEquivalentTo(new Position(5, 1));
         }

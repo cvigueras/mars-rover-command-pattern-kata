@@ -70,4 +70,16 @@ public class RemoteReceiver
             _ => Position
         };
     }
+
+    public void MoveBackward()
+    {
+        Position = Orientation switch
+        {
+            Orientation.North => new Position(Position.X, Position.Y + 1),
+            Orientation.South => new Position(Position.X, Position.Y - 1),
+            Orientation.East => new Position(Position.X - 1, Position.Y),
+            Orientation.West => new Position(Position.X + 1, Position.Y),
+            _ => Position
+        };
+    }
 }
