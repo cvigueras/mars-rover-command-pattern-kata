@@ -4,12 +4,20 @@
     {
         public Planet Planet;
         private readonly RemoteInvoker _remoteInvoker;
+        private readonly Dictionary<string, Command> commandsDict;
 
         public CurrentGame()
         {
             Planet = new Planet();
             _remoteInvoker = new RemoteInvoker(Orientation.North, new Position(1, 1));
             Planet.SetInitialValue();
+            commandsDict = new Dictionary<string, Command>
+            {
+                {"F",Command.F},
+                {"B",Command.B},
+                {"L",Command.L},
+                {"R",Command.R},
+            };
         }
 
         public void ResetPlanet()
@@ -19,33 +27,19 @@
 
         public void ExecuteCommand(string[] commands)
         {
-            Command[] commandsMove = { };
             foreach (var command in commands)
             {
-                if (command == "R")
-                {
-                    _remoteInvoker.Execute(Command.R);
-                }
-                if (command == "L")
-                {
-                    _remoteInvoker.Execute(Command.L);
-                }
-                if (command == "F")
-                {
-                    _remoteInvoker.Execute(Command.F);
-                }
-
-                if (command == "B")
-                {
-                    commandsMove = commandsMove.Concat(new[] { Command.B }).ToArray();
-                }
+                var executeCommand = commandsDict.FirstOrDefault(c => c.Key.Equals(command)).Value;
+                _remoteInvoker.Execute(executeCommand);
             }
 
-            if (commandsMove.Length > 0)
-            {
-                _remoteInvoker.RemoteReceiver.Move(commandsMove);
-            }
             ResetPlanet();
+            Planet.CheckPosition(_remoteInvoker.RemoteReceiver.Position);
+            SetPositionInPlanet();
+        }
+
+        private void SetPositionInPlanet()
+        {
             Planet.Value[_remoteInvoker.RemoteReceiver.Position.X, _remoteInvoker.RemoteReceiver.Position.Y] =
                 Planet.GetCurrentUnicodeOrientation(_remoteInvoker.RemoteReceiver.Orientation);
         }

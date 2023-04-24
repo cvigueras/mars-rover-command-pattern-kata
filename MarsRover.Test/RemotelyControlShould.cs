@@ -6,13 +6,11 @@ namespace MarsRover.Test
     public class RemotelyControlShould
     {
         private RemoteInvoker _remoteInvoker;
-        private RemoteReceiver _remoteReceiver;
 
         [SetUp]
         public void Setup()
         {
             _remoteInvoker = new RemoteInvoker(Orientation.North, new Position(1,1));
-            _remoteReceiver = new RemoteReceiver(Orientation.North, new Position(1,1));
         }
 
         [Test]
