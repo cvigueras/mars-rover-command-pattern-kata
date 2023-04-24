@@ -18,22 +18,25 @@
 
         public RemoteReceiver RemoteReceiver { get; }
 
-        public void Execute(Command command)
+        public void Execute(Command[] commands)
         {
-            switch (command)
+            foreach (var command in commands)
             {
-                case Command.R:
-                    _turnRight.Execute();
-                    break;
-                case Command.L:
-                    _turnLeft.Execute();
-                    break;
-                case Command.F:
-                    _moveForward.Execute();
-                    break;
-                case Command.B:
-                    _moveBackward.Execute();
-                    break;
+                switch (command)
+                {
+                    case Command.R:
+                        _turnRight.Execute();
+                        break;
+                    case Command.L:
+                        _turnLeft.Execute();
+                        break;
+                    case Command.F:
+                        _moveForward.Execute();
+                        break;
+                    case Command.B:
+                        _moveBackward.Execute();
+                        break;
+                }
             }
         }
     }

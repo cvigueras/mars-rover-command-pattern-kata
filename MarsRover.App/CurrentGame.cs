@@ -27,11 +27,14 @@
 
         public void ExecuteCommand(string[] commands)
         {
+            Command[] executeCommands = { };
+            var command1 = Command.B;
             foreach (var command in commands)
             {
-                var executeCommand = commandsDict.FirstOrDefault(c => c.Key.Equals(command)).Value;
-                _remoteInvoker.Execute(executeCommand);
+                var com = commandsDict.FirstOrDefault(c => c.Key.Equals(command)).Value;
+                executeCommands = executeCommands.Append(com).ToArray();
             }
+            _remoteInvoker.Execute(executeCommands);
 
             ResetPlanet();
             Planet.CheckPosition(_remoteInvoker.RemoteReceiver.Position);
