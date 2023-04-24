@@ -28,7 +28,6 @@
         public void ExecuteCommand(string[] commands)
         {
             Command[] executeCommands = { };
-            var command1 = Command.B;
             foreach (var command in commands)
             {
                 var com = commandsDict.FirstOrDefault(c => c.Key.Equals(command)).Value;

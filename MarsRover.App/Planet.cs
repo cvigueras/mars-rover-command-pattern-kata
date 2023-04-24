@@ -60,8 +60,8 @@
 
         public void CheckPosition(Position position)
         {
-            if (position.X < 0 || position.Y < 0 || position.X > Value.GetLength(0) ||
-                position.Y > Value.GetLength(1))
+            if (position.X < 0 || position.Y < 0 || position.X >= Value.GetLength(0) ||
+                position.Y >= Value.GetLength(1))
             {
                 throw new Exception("Rover has fallen out the planet and has died.");
             }
