@@ -32,7 +32,7 @@
                 }
                 if (command == "F")
                 {
-                    commandsMove = commandsMove.Concat(new[] { Command.F }).ToArray();
+                    _remoteInvoker.Execute(Command.F);
                 }
 
                 if (command == "B")
